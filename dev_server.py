@@ -239,11 +239,56 @@ def lan_ip() -> str | None:
         return None
 
 
+def is_wsl() -> bool:
+    """判断当前是否跑在 WSL 里（WSL 里没法直接拉起 Windows 浏览器）。"""
+    if os.environ.get("WSL_DISTRO_NAME") or os.environ.get("WSL_INTEROP"):
+        return True
+    try:
+        return "microsoft" in Path("/proc/version").read_text(encoding="utf-8", errors="ignore").lower()
+    except OSError:
+        return False
+
+
+def open_browser(url: str) -> None:
+    """尽量打开浏览器；打不开也不影响服务本身。"""
+    if is_wsl():
+        return
+    try:
+        import webbrowser
+
+        threading.Timer(0.6, lambda: webbrowser.open(url)).start()
+    except Exception:
+        pass
+
+
+def bind_server(host: str, port: int, handler):
+    """绑定端口；被占用就往后顺延几个端口，再不行就让系统随机分配。
+
+    这样在 Windows 与 WSL 里同时开着预览也不会互相顶掉。
+    """
+    attempts = [port, port + 1, port + 2, port + 3, 0]
+    last_error = None
+    for candidate in attempts:
+        try:
+            httpd = ThreadingServer((host, candidate), handler)
+        except OSError as exc:
+            last_error = exc
+            continue
+        if candidate == 0:
+            actual = httpd.server_address[1]
+            print(f"  [i] 端口 {port} 被占用，改用系统分配的 {actual}")
+        elif candidate != port:
+            print(f"  [i] 端口 {port} 被占用，改用 {candidate}")
+        return httpd
+    raise OSError(f"无法绑定 {host}:{port} 及相邻端口 —— {last_error}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="个人主页本地预览服务器")
     parser.add_argument("-p", "--port", type=int, default=8080, help="端口，默认 8080")
     parser.add_argument("--host", default="127.0.0.1", help="绑定地址，默认 127.0.0.1；用 0.0.0.0 允许局域网访问")
     parser.add_argument("--no-reload", action="store_true", help="关闭自动刷新")
+    parser.add_argument("--no-open", action="store_true", help="不自动打开浏览器")
     args = parser.parse_args()
 
     if not (ROOT / "index.html").is_file():
@@ -255,13 +300,13 @@ def main() -> int:
     handler = functools.partial(DevHandler, directory=str(ROOT))
 
     try:
-        httpd = ThreadingServer((args.host, args.port), handler)
+        httpd = bind_server(args.host, args.port, handler)
     except OSError as exc:
-        print(f"[!] 无法绑定 {args.host}:{args.port} —— {exc}", file=sys.stderr)
-        print("    端口可能被占用，试试：python dev_server.py -p 8081", file=sys.stderr)
+        print(f"[!] {exc}", file=sys.stderr)
         return 1
 
-    local = f"http://127.0.0.1:{args.port}/"
+    actual_port = httpd.server_address[1]
+    local = f"http://127.0.0.1:{actual_port}/"
     print()
     print("  个人主页 · 本地预览已启动")
     print("  " + "-" * 46)
@@ -269,12 +314,17 @@ def main() -> int:
     if args.host == "0.0.0.0":
         ip = lan_ip()
         if ip:
-            print(f"  局域网   : http://{ip}:{args.port}/")
+            print(f"  局域网   : http://{ip}:{actual_port}/")
     print(f"  站点目录 : {ROOT}")
     print(f"  自动刷新 : {'开启' if not args.no_reload else '关闭'}")
+    if is_wsl():
+        print("  运行环境 : WSL（浏览器请用上面这个地址手动打开）")
     print("  " + "-" * 46)
     print("  按 Ctrl+C 停止服务")
     print()
+
+    if not args.no_open:
+        open_browser(local)
 
     try:
         httpd.serve_forever()

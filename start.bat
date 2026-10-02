@@ -11,7 +11,7 @@ title 个人主页 - 本地预览
 rem 切到脚本所在目录，双击运行时也正确
 cd /d "%~dp0"
 
-rem ---- 找一个可用的 Python ----
+rem ---- 找一个可用的 Python（优先用 py 启动器） ----
 set "PY="
 where py >nul 2>&1 && set "PY=py"
 if not defined PY (
@@ -24,20 +24,17 @@ if not defined PY (
   echo       请先安装 Python 3，安装时勾选 "Add Python to PATH"。
   echo       下载地址：https://www.python.org/downloads/
   echo.
+  echo   如果你习惯用 WSL，可以在 WSL 里执行：
+  echo       ./start.sh
+  echo.
   pause
   exit /b 1
 )
 
 set "PYTHONUTF8=1"
-set "PORT=%~1"
-if "%PORT%"=="" set "PORT=8080"
 
-echo.
-echo   正在启动本地预览服务...
-echo.
-
-start "" "http://127.0.0.1:%PORT%/"
-%PY% dev_server.py --port %PORT%
+rem 端口被占用时，dev_server.py 会自动顺延；浏览器由它负责打开
+%PY% dev_server.py %*
 
 echo.
 echo   服务已退出。
