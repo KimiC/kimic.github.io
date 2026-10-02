@@ -104,6 +104,13 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
     def log_error(self, fmt: str, *args) -> None:
         self.log_message(fmt, *args)
 
+    def handle_one_request(self) -> None:
+        """浏览器复用连接后会主动断开，这里把这类噪音异常静音。"""
+        try:
+            super().handle_one_request()
+        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+            self.close_connection = True
+
     # ---------- 路由 ----------
     def do_GET(self) -> None:  # noqa: N802
         if urlparse(self.path).path == "/__reload":
