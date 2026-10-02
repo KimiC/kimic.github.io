@@ -1,0 +1,47 @@
+# ---------- 操作系统 ----------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# ---------- 编辑器 / IDE ----------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---------- 依赖与构建产物 ----------
+node_modules/
+dist/
+build/
+.cache/
+
+# ---------- 日志与临时文件 ----------
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.bak
+
+# ---------- 本地环境与密钥（永远不要提交） ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---------- 诊断报告 ----------
+acl-report-*.jsonl

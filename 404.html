@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — 页面不存在 | Kimi Chen</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+  .e404 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 80px;
+  }
+  .e404-code {
+    font-family: var(--font-mono);
+    font-size: clamp(4rem, 16vw, 9rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.05em;
+    margin: 0;
+  }
+  .e404-title { margin: 18px 0 10px; font-size: 1.4rem; font-weight: 600; }
+  .e404-text  { margin: 0 0 34px; color: var(--fg-soft); max-width: 34em; }
+  .e404-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+  <main class="wrap e404">
+    <p class="e404-code">404</p>
+    <h1 class="e404-title">这里没有东西</h1>
+    <p class="e404-text">
+      你要找的页面不存在，或者已经被移走了。<br>
+      不如回首页看看——那里至少还有土豆。
+    </p>
+    <div class="e404-actions">
+      <a class="btn btn-solid" href="/">回到首页</a>
+      <a class="btn btn-ghost" href="/#contact">联系我</a>
+    </div>
+  </main>
+</body>
+</html>

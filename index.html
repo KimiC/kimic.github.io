@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kimi Chen — 个人主页</title>
+<meta name="description" content="Kimi Chen 的个人主页。八年级学生，对电子游戏、自然科技、物理化学、天文地理感兴趣。">
+<meta name="theme-color" content="#fafafa">
+<meta property="og:title" content="Kimi Chen — 个人主页">
+<meta property="og:description" content="八年级学生 · 对电子游戏、自然科技、物理化学、天文地理感兴趣">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  // 尽早应用主题，避免刷新时的白屏闪烁
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <span class="brand-mark">K</span>
+      <span class="brand-text">Kimi&nbsp;Chen</span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <a href="#about">关于</a>
+      <a href="#interests">兴趣</a>
+      <a href="#now">近况</a>
+      <a href="#contact">联系</a>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深浅色主题" title="切换主题">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero wrap" id="top">
+    <p class="hero-eyebrow reveal">八年級 · Grade 8 · 中国</p>
+
+    <h1 class="hero-title reveal">
+      <span class="line">你好，我是</span>
+      <span class="line hero-name">Kimi Chen</span>
+    </h1>
+
+    <p class="hero-sub reveal">
+      一个<span class="hl">聪明</span>、<span class="hl">有野心</span>的八年级学生。
+    </p>
+
+    <p class="hero-note reveal">
+      对电子游戏、自然科技、物理化学、天文地理都感兴趣。<br>
+      心底无私善良，也懂得社会，会保护自己。
+    </p>
+
+    <p class="hero-joke reveal">
+      <span class="cursor-static" aria-hidden="true">_</span>
+      希望有一天，到东北亚去挖土豆。<span class="muted">（认真的，哈哈）</span>
+    </p>
+
+    <div class="hero-actions reveal">
+      <a class="btn btn-solid" href="#interests">看看我在想什么</a>
+      <a class="btn btn-ghost" href="#contact">联系我</a>
+    </div>
+
+    <div class="hero-rule reveal" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ About ============ -->
+  <section class="section wrap" id="about">
+    <div class="section-head reveal">
+      <span class="section-index">01</span>
+      <h2 class="section-title">关于我</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-portrait reveal" aria-hidden="true">
+        <div class="portrait-frame">
+          <span class="portrait-initial">K</span>
+          <span class="portrait-caption">KIMI&nbsp;CHEN</span>
+        </div>
+        <p class="portrait-hint">照片位 · 把照片放进 assets/img/ 后替换这里</p>
+      </div>
+
+      <div class="about-text reveal">
+        <p>
+          我是 Kimi Chen，一名八年级学生。喜欢把好奇心用在一切能拆开、能推演、能仰望的东西上：
+          从屏幕里的世界，到头顶的星空，再到脚下的山川地貌。
+        </p>
+        <p>
+          我不太喜欢空谈。想弄明白的事，我会去查、去算、去试；
+          想做成的事，我会把它一步一步排出来。野心不是喊出来的，是做出来的。
+        </p>
+        <p>
+          有人说善良和懂社会是矛盾的，我不这么认为。
+          我对人保持善意，但也看得清规则、边界和人心；该退的时候退，该守的时候守住自己。
+        </p>
+
+        <ul class="fact-list">
+          <li><span class="fact-key">身份</span><span class="fact-val">八年级学生 / Grade 8</span></li>
+          <li><span class="fact-key">性格</span><span class="fact-val">好奇心强 · 目标感强 · 有分寸</span></li>
+          <li><span class="fact-key">爱好</span><span class="fact-val">电子游戏 · 自然科学 · 天文地理</span></li>
+          <li><span class="fact-key">心愿</span><span class="fact-val">去东北亚挖土豆（暂时的）</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Interests ============ -->
+  <section class="section wrap" id="interests">
+    <div class="section-head reveal">
+      <span class="section-index">02</span>
+      <h2 class="section-title">我感兴趣的事</h2>
+    </div>
+
+    <div class="card-grid">
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🎮</div>
+        <h3 class="card-title">电子游戏</h3>
+        <p class="card-desc">玩得开心，也留意它是怎么被设计出来的——规则、反馈、平衡，都是学问。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🌿</div>
+        <h3 class="card-title">自然科技</h3>
+        <p class="card-desc">生物怎么运作，技术怎么改变生活。自然的答案，往往比人想出来的更精巧。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">⚛️</div>
+        <h3 class="card-title">物理 · 化学</h3>
+        <p class="card-desc">用最少的几条规律解释最多的现象。推公式的过程，比答案本身更有意思。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🔭</div>
+        <h3 class="card-title">天文</h3>
+        <p class="card-desc">抬头看的时候，尺度感会回来。人很小，但能理解很大的东西。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🗺️</div>
+        <h3 class="card-title">地理</h3>
+        <p class="card-desc">地图上的每一道线，背后都是地形、气候和人。东北亚的土豆也是这么来的。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🧭</div>
+        <h3 class="card-title">待解锁</h3>
+        <p class="card-desc">这块留白。以后学到新东西、起了新念头，就填在这里。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ Now ============ -->
+  <section class="section wrap" id="now">
+    <div class="section-head reveal">
+      <span class="section-index">03</span>
+      <h2 class="section-title">近况与计划</h2>
+    </div>
+
+    <ol class="timeline">
+      <li class="timeline-item reveal">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="timeline-body">
+          <span class="timeline-when">现在</span>
+          <h3 class="timeline-title">八年级</h3>
+          <p>把课内的底子打扎实，同时把课外的好奇心认真喂养。学得慢没关系，别停。</p>
+        </div>
+      </li>
+
+      <li class="timeline-item reveal">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="timeline-body">
+          <span class="timeline-when">正在做</span>
+          <h3 class="timeline-title">把想法变成看得见的东西</h3>
+          <p>比如这个主页：从零写出来，自己部署，自己维护。想做的东西要能跑起来才算数。</p>
+        </div>
+      </li>
+
+      <li class="timeline-item reveal">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="timeline-body">
+          <span class="timeline-when">接下来</span>
+          <h3 class="timeline-title">更深的理科 · 更广的视野</h3>
+          <p>物理、化学、天文继续往下走；地理和世界格局也要看得懂。</p>
+        </div>
+      </li>
+
+      <li class="timeline-item reveal">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="timeline-body">
+          <span class="timeline-when">有一天</span>
+          <h3 class="timeline-title">东北亚，挖土豆</h3>
+          <p>一句玩笑，也是一个方向：走出去，亲眼看看更大的世界。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section class="section wrap" id="contact">
+    <div class="section-head reveal">
+      <span class="section-index">04</span>
+      <h2 class="section-title">联系我</h2>
+    </div>
+
+    <p class="contact-lead reveal">
+      想聊游戏、聊物理、聊星星，或者只是想打个招呼——都欢迎。
+    </p>
+
+    <div class="contact-grid">
+      <!-- 把 YOUR_USERNAME 换成你的 GitHub 用户名 -->
+      <a class="contact-card reveal" href="https://github.com/kimic" target="_blank" rel="noopener noreferrer">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">@kimic</span>
+        <span class="contact-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <!-- 邮箱：把 you@example.com 换成真实地址；不想公开就整块删掉 -->
+      <a class="contact-card reveal" href="mailto:you@example.com">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">you@example.com</span>
+        <span class="contact-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <div class="contact-card contact-card-static reveal">
+        <span class="contact-label">所在地</span>
+        <span class="contact-value">中国 · China</span>
+      </div>
+    </div>
+
+    <p class="contact-tip reveal">
+      提示：上面两块占位内容在 <code>index.html</code> 里搜 <code>YOUR_USERNAME</code> 和 <code>you@example.com</code> 就能改。
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© <span id="year">2025</span> Kimi Chen · 用 HTML 和 CSS 手写</p>
+    <p class="footer-meta">
+      <a href="#top">回到顶部 ↑</a>
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
