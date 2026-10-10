@@ -69,7 +69,7 @@ python dev_server.py --no-reload     # 关掉自动刷新
 | 关于我、个人信息表 | `index.html` → `<section id="about">` |
 | 兴趣卡片（加一张/改文字） | `index.html` → `<section id="interests">` 里复制一个 `<article class="card">` |
 | 近况时间线 | `index.html` → `<section id="now">` |
-| 邮箱 / GitHub 链接 | `index.html` → `<section id="contact">`，搜 `you@example.com` 和 `@kimic` |
+| 邮箱 / GitHub 链接 | `index.html` → `<section id="contact">`，搜 `chenkimi12@hotmail.com` 和 `@KimiC` |
 | 颜色（想换个主色调） | `assets/css/style.css` 最上面的 `:root { }` 变量 |
 | 头像照片 | 把图片放进 `assets/img/`，替换 `about` 里的 `portrait-frame` 那块 |
 | 导航菜单 | `index.html` 里 `class="nav"` 的 `<a>` 列表 |
@@ -98,7 +98,7 @@ git config user.email "你的邮箱"
 
 打开 <https://github.com/new>：
 
-- **Owner** 选 `kimic`
+- **Owner** 选 `KimiC`
 - **Repository name** 建议 `kimic.github.io`
   - 用这个名字的好处：以后开启 GitHub Pages，地址直接是 `https://kimic.github.io/`
   - 想用别的名字也行（比如 `homepage`），只是 Pages 地址会变成 `https://kimic.github.io/homepage/`
@@ -110,7 +110,7 @@ git config user.email "你的邮箱"
 建完仓库后，把 `<仓库名>` 换掉，逐条执行：
 
 ```bash
-git remote add origin https://github.com/kimic/<仓库名>.git
+git remote add origin https://github.com/KimiC/<仓库名>.git
 git branch -M main
 git push -u origin main
 ```
@@ -175,11 +175,11 @@ mkdir -p /var/www/kimic
 
 ```bash
 # 服务器上执行；公开仓库不需要登录
-git clone https://github.com/kimic/<仓库名>.git /var/www/kimic
+git clone https://github.com/KimiC/kimic.github.io.git /var/www/kimic
 ```
 
 > 如果仓库是私有的，需要配置 Deploy Key 或使用带 token 的地址：
-> `git clone https://<你的token>@github.com/kimic/<仓库名>.git /var/www/kimic`
+> `git clone https://<你的token>@github.com/KimiC/kimic.github.io.git /var/www/kimic`
 
 **方式 B：从本机直接上传**（Windows PowerShell 里执行）
 
@@ -268,8 +268,8 @@ git pull
 仓库 → **Settings** → **Pages** → Source 选 `Deploy from a branch` →
 Branch 选 `main`、目录 `/ (root)` → Save。
 
-一两分钟后访问 `https://kimic.github.io/<仓库名>/`
-（如果仓库名就叫 `kimic.github.io`，地址是 `https://kimic.github.io/`）。
+一两分钟后访问 **<https://kimic.github.io/>**
+（仓库名就叫 `kimic.github.io`，所以地址没有子路径）。
 
 > 注意：Pages 在国内访问速度一般，所以它更适合当"随时能看的预览"，
 > 正式对外还是走阿里云。

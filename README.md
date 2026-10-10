@@ -58,7 +58,7 @@ Windows 用户直接**双击 `start.bat`** 即可，不需要安装任何东西�
 ## 联系方式
 
 - 邮箱：chenkimi12@hotmail.com
-- GitHub：[@kimic](https://github.com/kimic)
+- GitHub：[@KimiC](https://github.com/KimiC)
 - 所在地：中国 · 上海
 
 ## 还可以补充的内容
