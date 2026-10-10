@@ -55,11 +55,15 @@ Windows 用户直接**双击 `start.bat`** 即可，不需要安装任何东西�
 
 完整步骤见 [deploy/DEPLOY.md](deploy/DEPLOY.md)：本机预览 → GitHub 仓库 → 阿里云轻量应用服务器 → 域名与 HTTPS。
 
-## 待替换的占位内容
+## 联系方式
 
-- [ ] `index.html` 里的邮箱 `you@example.com`
-- [ ] `index.html` 关于区块的照片位
-- [ ] 删掉 `index.html` 结尾的 `contact-tip` 提示段落
+- 邮箱：chenkimi12@hotmail.com
+- GitHub：[@kimic](https://github.com/kimic)
+- 所在地：中国 · 上海
+
+## 还可以补充的内容
+
+- [ ] `index.html` 关于区块的照片位（现在显示大写 `K`），图片放进 `assets/img/` 后替换
 
 ---
 

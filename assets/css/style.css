@@ -552,6 +552,48 @@ a.contact-card:hover {
 a.contact-card:hover .contact-arrow { transform: translate(3px, -3px); color: var(--fg); }
 .contact-card-static { opacity: .92; }
 
+/* 页面收尾的邮箱区块 */
+.contact-email {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  margin-top: 14px;
+  padding: 30px 34px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color .25s ease, background-color .25s ease, transform .3s var(--ease);
+}
+.contact-email:hover {
+  border-color: var(--fg);
+  background: var(--bg-soft);
+  transform: translateY(-3px);
+}
+.contact-email-label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.contact-email-value {
+  font-size: clamp(1.05rem, 3.2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -.01em;
+  word-break: break-all;
+}
+.contact-email-arrow {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-size: 17px;
+  color: var(--fg-mute);
+  transition: transform .3s var(--ease), color .25s ease;
+}
+.contact-email:hover .contact-email-arrow { transform: translate(3px, -3px); color: var(--fg); }
+
 .contact-tip {
   margin: 22px 0 0;
   font-size: 13.5px;
@@ -616,6 +658,8 @@ a.contact-card:hover .contact-arrow { transform: translate(3px, -3px); color: va
   .header-inner { height: 58px; }
   html { scroll-padding-top: 76px; }
   .brand-text { display: none; }
+  .contact-email { padding: 24px 22px; }
+  .contact-email-arrow { top: 22px; right: 20px; }
 }
 
 @media (max-width: 460px) {
