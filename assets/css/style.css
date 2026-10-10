@@ -373,22 +373,21 @@ html[data-theme="dark"] .theme-toggle-icon { transform: rotate(180deg); }
 }
 .portrait-frame:hover img { transform: scale(1.03); }
 
-/* 名字条紧贴照片右下角（不留边距），避开画面主体：人物与马腿在中间偏左 */
+/* 名字条紧贴照片右下角；底色透明，文字直接压在草地上，用轻微暗影保证可读 */
 .portrait-caption {
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: 1;
-  padding: 4px 9px;
+  padding: 5px 10px;
   font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: .18em;
-  line-height: 1.5;
+  font-size: 10px;
+  letter-spacing: .2em;
+  line-height: 1.4;
   color: #fff;
   white-space: nowrap;
-  background: rgba(0, 0, 0, .46);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: transparent;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .55), 0 0 1px rgba(0, 0, 0, .8);
   pointer-events: none;
 }
 
