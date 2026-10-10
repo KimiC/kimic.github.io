@@ -30,6 +30,8 @@ build/
 
 # ---------- 日志与临时文件 ----------
 *.log
+.devserver.out.log
+.devserver.err.log
 npm-debug.log*
 yarn-error.log*
 pnpm-debug.log*
