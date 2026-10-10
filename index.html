@@ -88,12 +88,17 @@
     </div>
 
     <div class="about-grid">
-      <div class="about-portrait reveal" aria-hidden="true">
+      <div class="about-portrait reveal">
         <div class="portrait-frame">
-          <span class="portrait-initial">K</span>
+          <picture>
+            <source type="image/jpeg"
+                    srcset="assets/img/Kimi-800.jpg 800w, assets/img/Kimi-1200.jpg 1200w"
+                    sizes="(max-width: 860px) 240px, 260px">
+            <img src="assets/img/Kimi.jpg" width="1279" height="1599"
+                 alt="Kimi Chen 的照片" loading="lazy" decoding="async">
+          </picture>
           <span class="portrait-caption">KIMI&nbsp;CHEN</span>
         </div>
-        <p class="portrait-hint">照片位 · 把照片放进 assets/img/ 后替换这里</p>
       </div>
 
       <div class="about-text reveal">
