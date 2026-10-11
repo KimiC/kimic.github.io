@@ -30,18 +30,24 @@ Windows 用户直接**双击 `start.bat`** 即可，不需要安装任何东西�
 
 ```
 .
-├── index.html          # 单页站点，所有内容
+├── index.html              # 单页站点，所有内容
+├── 404.html                # 找不到页面时显示
+├── .nojekyll               # 让 GitHub Pages 跳过 Jekyll 处理
 ├── assets/
-│   ├── css/style.css   # 极简黑白主题 + 深色模式
-│   ├── js/main.js      # 主题切换 / 滚动动画 / 导航高亮
-│   └── img/            # 图片放这里
-├── dev_server.py       # 本地预览服务（含热重载）
-├── start.bat           # Windows 一键启动
-├── start.sh            # macOS / Linux 一键启动
+│   ├── css/style.css       # 极简黑白主题 + 深色模式
+│   ├── js/main.js          # 主题切换 / 滚动动画 / 导航高亮
+│   └── img/                # 照片放这里
+├── dev_server.py           # 本地预览服务（含热重载）
+├── start.bat               # Windows 一键启动
+├── start.sh                # macOS / Linux 一键启动
+├── deploy-github.bat       # Windows 双击：一条命令推到 GitHub
 └── deploy/
-    ├── nginx.conf      # 阿里云 Nginx 配置
-    └── DEPLOY.md       # 完整部署与迁移手册
+    ├── nginx.conf          # 站点配置模板（由脚本渲染）
+    ├── setup-server.sh     # 服务器上跑：一键部署 / 一键更新
+    └── DEPLOY.md           # 完整部署与迁移手册
 ```
+
+> `dsh-bot/` 是另一个项目，已被 `.gitignore` 排除，不会进入主页仓库。
 
 ## 功能
 
@@ -53,7 +59,21 @@ Windows 用户直接**双击 `start.bat`** 即可，不需要安装任何东西�
 
 ## 部署
 
-完整步骤见 [deploy/DEPLOY.md](deploy/DEPLOY.md)：本机预览 → GitHub 仓库 → 阿里云轻量应用服务器 → 域名与 HTTPS。
+代码托管在 <https://github.com/KimiC/kimic.github.io>，两个地方都在跑同一份内容：
+
+- **GitHub Pages**：<https://kimic.github.io/> —— 已经在线，免费，随时能看
+- **阿里云轻量服务器（新加坡，raftchen 的机器）**：<http://47.82.233.199:8899/> —— 正式站
+
+> 那台服务器上已有别人的站点占着 80/443，所以本站挂在独立端口 `8899`，
+> 配置不抢端口、不动 `sites-enabled/default`，可以和已有站点共存。
+
+| 步骤 | 在哪做 | 一条命令 |
+| --- | --- | --- |
+| 推到 GitHub | 本机 | 双击 `deploy-github.bat` |
+| 部署 / 更新 | 服务器 | `bash /var/www/kimic/deploy/setup-server.sh` |
+| 换成自己的域名 | 服务器 | `bash /var/www/kimic/deploy/setup-server.sh --domain 你的域名 --https` |
+
+完整步骤、报错对照表、域名与 HTTPS 见 [deploy/DEPLOY.md](deploy/DEPLOY.md)。
 
 ## 联系方式
 
