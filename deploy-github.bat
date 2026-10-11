@@ -154,14 +154,19 @@ exit /b 1
 echo.
 echo [ERR] The push failed. Read the message above.
 echo.
+echo   - "Permission ... denied to SOMEONE-ELSE" or error 403:
+echo       Git is logged in as the WRONG GitHub account.
+echo       This is NOT a history problem, do NOT use --force.
+echo       Clear the wrong credential, then push again:
+echo         @("protocol=https","host=github.com","") ^| git credential reject
+echo         git push -u origin main
+echo       and sign in as KimiC. Full steps: deploy/DEPLOY.md 4.3.1
+echo.
 echo   - Authentication failed or cancelled:
-echo       run this script again and enter a Personal Access Token.
+echo       run this script again and enter a KimiC Personal Access Token.
 echo   - Rejected, the remote already has commits:
 echo       git pull --rebase origin main
 echo       then run this script again.
-echo   - Still rejected and you do not need whatever is on the
-echo     remote, this repo is yours so overwriting it is safe:
-echo       git push -u origin main --force
 echo.
 pause
 exit /b 1

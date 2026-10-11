@@ -59,13 +59,14 @@ Windows 用户直接**双击 `start.bat`** 即可，不需要安装任何东西�
 
 ## 部署
 
-代码托管在 <https://github.com/KimiC/kimic.github.io>，两个地方都在跑同一份内容：
+代码托管在 <https://github.com/KimiC/kimic.github.io>，两个地方跑同一份内容，**都已上线**：
 
-- **GitHub Pages**：<https://kimic.github.io/> —— 已经在线，免费，随时能看
-- **阿里云轻量服务器（新加坡，raftchen 的机器）**：<http://47.82.233.199:8899/> —— 正式站
+- ✅ **阿里云轻量服务器（新加坡，raftchen 的机器）**：<http://47.82.233.199:8899/> —— 正式站
+- ✅ **GitHub Pages**：<https://kimic.github.io/> —— 免费，随时能看的预览
 
 > 那台服务器上已有别人的站点占着 80/443，所以本站挂在独立端口 `8899`，
-> 配置不抢端口、不动 `sites-enabled/default`，可以和已有站点共存。
+> 配置不抢端口、不动 `sites-enabled/default`，和已有站点共存。发行版是 RHEL 系（`dnf`），
+> nginx 运行用户是 `nginx`。完整现状见 [deploy/DEPLOY.md](deploy/DEPLOY.md) 第 5.1 节。
 
 | 步骤 | 在哪做 | 一条命令 |
 | --- | --- | --- |

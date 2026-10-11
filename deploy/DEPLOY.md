@@ -141,9 +141,60 @@ python dev_server.py --no-reload     # 关掉自动刷新
 | 屏幕上出现的提示 | 怎么办 |
 | --- | --- |
 | `"git" was not found in PATH` | 脚本会问你 git.exe 所在目录。如果 Git 装在 `D:\乱七八糟\Git`，就填 `D:\乱七八糟\Git\cmd`；或者重装 Git 时勾上 "Add Git to PATH" |
+| **`Permission to KimiC/kimic.github.io.git denied to <别的账号>`** 或 `403` | **登错账号了**（见下面 4.3.1，最常见） |
 | `Authentication failed` | Token 没填对或已过期，重跑脚本，重新生成一个 Token |
 | `nothing to commit` | 不算错误，说明没有改动需要提交 |
 | `rejected ... non-fast-forward` | 远程有你本地没有的提交（比如你在 GitHub 网页上直接改过文件）。先 `git pull --rebase origin main`，解决冲突后再重跑；**别直接 `--force`**，那会盖掉网页上那次改动 |
+
+#### 4.3.1 登错了 GitHub 账号（`denied to Raft-chen` 这种）
+
+Windows 凭据管理器里存的是**另一个 GitHub 账号**的凭据，所以推送是以那个账号的身份发出去的，
+而它对 `KimiC/kimic.github.io` 没有写权限。表现就是：
+
+```
+remote: Permission to KimiC/kimic.github.io.git denied to Raft-chen.
+fatal: unable to access '...': The requested URL returned error: 403
+```
+
+**注意**：这种情况**不要**用 `--force`，也**不要** `git pull --rebase` —— 跟历史一点关系都没有，纯粹是账号不对。
+
+两种修法，任选一种：
+
+**A. 用 KimiC 的 Personal Access Token（最确定）**
+
+先确认浏览器里登录的是 **KimiC**（不是 Raft-chen）：
+GitHub → 头像 → Settings → Developer settings → Personal access tokens →
+**Tokens (classic)** → Generate new token (classic) → 勾 `repo` → 生成后复制。
+
+然后在 PowerShell 里（把 `TOKEN` 换成刚复制的）：
+
+```powershell
+# 1. 清掉现在缓存的错误账号
+@("protocol=https","host=github.com","") | git credential reject
+
+# 2. 把 KimiC 的 token 写进 Windows 凭据管理器
+@("protocol=https","host=github.com","username=KimiC","password=TOKEN","") | git credential approve
+
+# 3. 重新推（这次不会再弹浏览器）
+git push -u origin main
+```
+
+**B. 让浏览器流程走对账号**
+
+先在浏览器里**退出** GitHub 的 Raft-chen，登录 KimiC，然后：
+
+```powershell
+@("protocol=https","host=github.com","") | git credential reject
+git push -u origin main
+```
+
+再弹出的授权页面里选 **KimiC**。
+
+> **C. 另一个方向**：如果你本来就想用 Raft-chen 来推，
+> 那就用 KimiC 登录 GitHub，在仓库 Settings → Collaborators 里把 `Raft-chen` 加成协作者。
+> 不过这个仓库和 GitHub Pages 都属于 KimiC，长期看还是用 KimiC 推更顺。
+
+修改凭据之后，双击 `deploy-github.bat` 会显示 `nothing new to commit` 然后继续推送 —— 正常现象，提交早就在本地了。
 
 ### 4.4 不想用脚本的话，手动就这三条
 
@@ -181,7 +232,10 @@ git push
 | --- | --- |
 | 公网 IP | `47.82.233.199` |
 | 地域 | **新加坡**（`AS45102 Alibaba`，所以**不需要备案**） |
+| 登录用户 | `admin`（**不是 root**，`sudo` 可用且免密），需要动系统的地方都加 `sudo` |
+| 发行版 | **RHEL 系**（包管理器是 `dnf`，不是 `apt`）；nginx 运行用户是 **`nginx`**，不是 `www-data` |
 | 已有站点 | ⚠️ **有**。用 `http://47.82.233.199/` 会被 301 跳到 `https://`，说明 80 端口上已经有一个 `default_server` 在跑别人的站 |
+| 本站状态 | ✅ **已上线**：<http://47.82.233.199:8899/>，站点目录 `/var/www/kimic`，配置 `/etc/nginx/conf.d/kimic.conf` |
 
 **因为这台机器不是你独占的，部署方式要选对：**
 
@@ -262,6 +316,18 @@ sudo bash deploy/setup-server.sh
 8. 打印访问地址、以及"还要去控制台放行 8899"的提醒
 
 跑完打开 **<http://47.82.233.199:8899/>** 就能看到主页了。
+
+> **2026-10-11 首次部署已从公网逐项验证通过**（拿这几条当以后的对照基准）：
+>
+> | 检查 | 结果 |
+> | --- | --- |
+> | `http://47.82.233.199:8899/` | `200`，整站渲染正常 |
+> | `assets/css/style.css` | `200`，`text/css` |
+> | `assets/js/main.js` | `200`，`application/javascript` |
+> | `assets/img/Kimi-800.jpg` | `200`，`image/jpeg` |
+> | 不存在的路径 | **真的 `404`**（不是软 404），并正确显示自定义 `404.html` |
+>
+> 日志在服务器上：`/var/log/nginx/kimic.access.log`、`/var/log/nginx/kimic.error.log`。
 
 > 想换端口：`sudo PORT=9000 bash deploy/setup-server.sh`
 > （换端口后要记得同步改控制台防火墙规则；已经生成过配置的话加 `FORCE_NGINX=1` 重新渲染）
